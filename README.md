@@ -1,6 +1,8 @@
 #### INSTALAÇÃO DE SERVIDOR OTIMIZADO PARA WordPress
 
 
+setxkbmap -model abnt2 -layout br
+
 #### PASSO 1
 ``` sh
 sudo -i
