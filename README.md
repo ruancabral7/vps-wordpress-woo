@@ -1,4 +1,4 @@
-#### INSTALAÇÃO DE SERVIDOR OTIMIZADO PARA WordPress + WooCommerce
+#### INSTALAÇÃO DE SERVIDOR OTIMIZADO PARA WordPress
 
 
 #### PASSO 1
@@ -57,71 +57,6 @@ email = **emailadmin**
 
 #### PASSO 6
 
-- nano /etc/nginx/common/wpfc-woocommerce.conf
-
-``` php
-# WPFC-WOOCOMMERCE NGINX CONFIGURATION
-
-set $skip_cache 0;
-
-# POST requests and URL with a query string should always go to php
-if ($request_method = POST) {
-     set $skip_cache 1;
-}
-
-if ($query_string != "") {
-     set $skip_cache 1;
-}
-
-# Don't cache URL containing the following segments
- if ($request_uri ~* "(/carrinho.*|/minha-conta.*|/finalizar-compra.*|/addons.*|/wp-admin/|/xmlrpc.php|wp-.*.php|/feed/|index.php|sitemap(_index)?.xml|[a-z0-9_-]+-sitemap([0-9]+)?.xml)") {
-     set $skip_cache 1;
-}
-
-# Don't use the cache for logged in users or recent commenter
-if ($http_cookie ~* "comment_author|wordpress_[a-f0-9]+|wp-postpass|wordpress_no_cache|wordpress_logged_in") {
-     set $skip_cache 1;
-}
-
-# Use cached or actual file if they exists, Otherwise pass request to WordPress
-location / {
-     try_files $uri $uri/ /index.php?$args;
-}
-
-location ~ \.php$ {
-     set $rt_session "";
-
-     if ($http_cookie ~* "wp_woocommerce_session_[^=]*=([^%]+)%7C") {
-     set $rt_session wp_woocommerce_session_$1;
-     }
-
-     if ($skip_cache = 0 ) {
-          more_clear_headers "Set-Cookie*";
-          set $rt_session "";
-     }
-
-     fastcgi_cache_key "$scheme$request_method$host$request_uri$rt_session";
-
-     try_files $uri =404;
-     include fastcgi_params;
-
-     fastcgi_pass php;
-
-     fastcgi_cache_bypass $skip_cache;
-     fastcgi_no_cache $skip_cache;
-
-     fastcgi_cache WORDPRESS;
-     fastcgi_cache_valid 60m;
-}
-
-location ~ /purge(/.*) {
-     fastcgi_cache_purge WORDPRESS "$scheme$request_method$host$1";
-}
-```
-
-
-#### PASSO 7
-
 - ee site edit MINHALOJA.com.br
 
   ``` php
@@ -145,8 +80,4 @@ http://www.MINHALOJA.com.br/pma
 ```
 
 
-##### [Acesse a Vídeo-Aula AQUI!] (http://youtu.be/m7mGl683Ioc)
-
-# SUCESSO !
-
-## Dúvidas: edisoncosta@lojaplus.com.br
+##### 
