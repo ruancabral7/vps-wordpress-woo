@@ -55,18 +55,6 @@ email = **emailadmin**
   define ( 'AUTOMATIC_UPDATER_DISABLED', true );
   ```
 
-#### PASSO 6
-
-- ee site edit MINHALOJA.com.br
-
-  ``` php
-  # include common/wpfc.conf; 
-  include common/wpfc-woocommerce.conf;
-  ```
-
-- chown -R www-data:www-data /var/www/MINHALOJA.com.br/htdocs
-
-
 #### BÔNUS (PHPMyAdmin)
 
 - ee secure --auth
