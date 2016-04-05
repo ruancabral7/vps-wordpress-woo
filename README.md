@@ -71,3 +71,30 @@ http://www.MINHALOJA.com.br/pma
 
 
 ##### 
+
+sudo apt-get install proftpd
+
+Pressione “Enter” para confirmar o tipo padrão “autônomo”
+
+nano /etc/proftpd/proftpd.conf
+
+**Agora procure pelo item “ServerName”, por volta da linha 15, e altere o nome “Debian” para o nome que quiser dar ao seu sevidor de FTP
+
+“User” aproximadamente na linha 68. mudar por ftp
+
+sudo passwd ftp
+
+sudo addgroup ftp
+
+sudo addgroup ftp ftp
+
+nano /etc/passwd
+
+ftp:x:118:65534::/var/www/w1:/bin/bash
+
+sudo chmod 777 /var/www/w1
+
+sudo /etc/init.d/proftpd restart
+
+sudo /etc/init.d/proftpd status
+
